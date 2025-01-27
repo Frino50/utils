@@ -1,7 +1,7 @@
 {
-  "name": "utils",
-  "private": true,
-  "version": "0.0.0",
+  "name": "my-alone-test-project",
+  "private": false,
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -17,5 +17,9 @@
     "typescript": "^5.7.3",
     "vite": "^6.0.7",
     "vue-tsc": "^2.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Frino50/utils.git"
   }
 }
