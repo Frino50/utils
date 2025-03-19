@@ -1,5 +1,5 @@
 <template>
-    <div style="position: relative;">
+    <div style="position: relative">
         <div :class="['float-label', { error: errorMessage }]">
             <input
                 :id="label.toLowerCase()"
@@ -10,8 +10,15 @@
                 @focus="isFocused = true"
                 @input="updateValue"
             />
+
             <label
-                :class="['label', { 'float-active': isFocused || localValue, error: errorMessage }]"
+                :class="[
+                    'label',
+                    {
+                        'float-active': isFocused || localValue,
+                        error: errorMessage,
+                    },
+                ]"
                 :for="label.toLowerCase()"
             >
                 {{ label }}
@@ -68,7 +75,11 @@ function handleBlur() {
 
     if (props.required && !localValue.value) {
         errorMessage.value = props.messageRequired || "Invalid input";
-    } else if (localValue.value && props.regex && !props.regex.test(String(localValue.value))) {
+    } else if (
+        localValue.value &&
+        props.regex &&
+        !props.regex.test(String(localValue.value))
+    ) {
         errorMessage.value = props.messageRegex || "Invalid regex input";
     } else {
         errorMessage.value = null;
@@ -121,7 +132,9 @@ input:focus {
     border: 1px solid var(--light-gray);
     font-size: 1.2rem;
     box-sizing: border-box;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .input-field:focus {
@@ -161,5 +174,3 @@ input:focus {
     margin-top: 0.25rem;
 }
 </style>
-
-

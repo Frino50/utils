@@ -4,13 +4,13 @@
             {{ label }}
         </div>
         <div class="center-checkbox">
-            <div :class="checkboxClass" class="checkbox"
-                 @click="toggleState">
+            <div :class="checkboxClass" class="checkbox" @click="toggleState">
                 <span v-if="model === true">✓</span>
                 <span v-if="model === false">X</span>
                 <span v-if="model === undefined"></span>
             </div>
         </div>
+
         <div v-if="!props.left">
             {{ label }}
         </div>
@@ -24,7 +24,7 @@ const model = defineModel();
 
 const props = defineProps<{
     label?: string[];
-    left?: boolean
+    left?: boolean;
 }>();
 
 const emit = defineEmits<(event: "change") => void>();
@@ -67,7 +67,7 @@ const checkboxClass = computed(() => {
 .main {
     display: flex;
     align-items: center;
-    gap: 0.5rem
+    gap: 0.5rem;
 }
 
 .center-checkbox {
@@ -98,6 +98,4 @@ const checkboxClass = computed(() => {
     color: white;
     border: 1px solid var(--red);
 }
-
-
 </style>

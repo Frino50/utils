@@ -12,9 +12,7 @@
         ></div>
     </div>
 
-    <div class="gear-icon" @click="openPopUp = !openPopUp">
-        ⚙️
-    </div>
+    <div class="gear-icon" @click="openPopUp = !openPopUp">⚙️</div>
 
     <PopUp v-model="openPopUp">
         <div class="button-container-ball">
@@ -81,8 +79,8 @@ function createBall(x: number, y: number): Ball {
 function updateCachedElements() {
     cachedElements = Array.from(
         document.querySelectorAll<HTMLElement>(
-            "input,button,[class*='multiselect'],[class*='input'],[class*='checkbox']",
-        ),
+            "input,button,[class*='multiselect'],[class*='input'],[class*='checkbox']"
+        )
     );
 }
 
@@ -147,7 +145,7 @@ function handleBallCollision(ball1: Ball, ball2: Ball) {
 }
 
 function checkElementCollision(
-    ball: Ball,
+    ball: Ball
 ): { element: HTMLElement; collision: boolean; rect: DOMRect } | null {
     for (const element of cachedElements) {
         const rect = element.getBoundingClientRect();
@@ -169,7 +167,7 @@ function checkElementCollision(
 function handleElementCollision(
     ball: Ball,
     element: HTMLElement,
-    rect: DOMRect,
+    rect: DOMRect
 ) {
     const ballCenterX = ball.x + BALL_SIZE / 2;
     const ballCenterY = ball.y + BALL_SIZE / 2;
@@ -299,7 +297,9 @@ function removeBall() {
     color: #333;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
 }
 
 .gear-icon:hover {

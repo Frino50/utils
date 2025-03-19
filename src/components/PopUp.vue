@@ -1,9 +1,5 @@
 <template>
-    <div
-        v-if="open"
-        ref="dialogRef"
-        class="dialog"
-    >
+    <div v-if="open" ref="dialogRef" class="dialog">
         <div
             class="dialog-header"
             @mousedown="startDragging"
@@ -12,12 +8,12 @@
             <span class="dialog-title">Gestion</span>
             <button class="close-btn" @click="open = false">&times;</button>
         </div>
+
         <div class="dialog-content">
             <slot></slot>
         </div>
     </div>
 </template>
-
 
 <script lang="ts" setup>
 import { ref } from "vue";
