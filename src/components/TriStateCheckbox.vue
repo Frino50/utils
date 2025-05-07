@@ -2,23 +2,17 @@
     <div class="main">
         <div class="center-checkbox">
             <div
-                :class="checkboxClass"
                 class="checkbox"
-                @click="toggleState()"
+                :style="checkboxStyle"
+                @click="!disabled && toggleState()"
                 role="checkbox"
-                :aria-checked="
-                    model === true
-                        ? 'true'
-                        : model === false
-                          ? 'false'
-                          : 'mixed'
-                "
-                tabindex="0"
-                @keydown.space.prevent="toggleState()"
+                :aria-checked="ariaChecked"
+                :tabindex="disabled ? -1 : 0"
+                @keydown.space.prevent="!disabled && toggleState()"
             >
                 <span v-if="model === true">✓</span>
-                <span v-if="model === false">X</span>
-                <span v-if="model === undefined"></span>
+                <span v-else-if="model === false">X</span>
+                <span v-else></span>
             </div>
         </div>
 
@@ -36,41 +30,58 @@ const props = defineProps<{
     undefinedLabel?: string;
     trueLabel?: string;
     falseLabel?: string;
+    trueColor?: string;
+    falseColor?: string;
+    undefinedColor?: string;
+    disabled?: boolean;
 }>();
 
 const emit = defineEmits<(event: "change") => void>();
 
 const label = computed(() => {
-    if (props.undefinedLabel && model.value === undefined) {
+    if (props.undefinedLabel && model.value === undefined)
         return props.undefinedLabel;
-    } else if (props.trueLabel && model.value === true) {
-        return props.trueLabel;
-    } else if (props.falseLabel && model.value === false) {
-        return props.falseLabel;
-    }
+    if (props.trueLabel && model.value === true) return props.trueLabel;
+    if (props.falseLabel && model.value === false) return props.falseLabel;
     return "";
 });
 
 function toggleState() {
-    if (model.value === undefined) {
-        model.value = true;
-    } else if (model.value) {
-        model.value = false;
-    } else {
-        model.value = undefined;
-    }
+    if (model.value === undefined) model.value = true;
+    else if (model.value) model.value = false;
+    else model.value = undefined;
 
     emit("change");
 }
 
-const checkboxClass = computed(() => {
+const ariaChecked = computed(() =>
+    model.value === true ? "true" : model.value === false ? "false" : "mixed"
+);
+
+const checkboxStyle = computed(() => {
+    let bgColor = "";
+    let borderColor = "";
+    let color = "white";
+
     if (model.value === true) {
-        return "checkbox-true";
+        bgColor = props.trueColor ?? "#007ad9";
+        borderColor = bgColor;
     } else if (model.value === false) {
-        return "checkbox-false";
+        bgColor = props.falseColor ?? "red";
+        borderColor = bgColor;
     } else {
-        return "";
+        bgColor = props.undefinedColor ?? "transparent";
+        borderColor = "lightgray";
+        color = "inherit";
     }
+
+    return {
+        backgroundColor: bgColor,
+        border: `0.1rem solid ${borderColor}`,
+        color,
+        cursor: props.disabled ? "not-allowed" : "pointer",
+        opacity: props.disabled ? 0.6 : 1,
+    };
 });
 </script>
 
@@ -97,25 +108,12 @@ const checkboxClass = computed(() => {
 
 .checkbox {
     user-select: none;
-    cursor: pointer;
     width: 1.5rem;
     height: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--light-gray);
     border-radius: 0.5rem;
-}
-
-.checkbox-true {
-    color: white;
-    background-color: var(--blue);
-    border: 0.1rem solid var(--blue);
-}
-
-.checkbox-false {
-    background-color: var(--red);
-    color: white;
-    border: 0.1rem solid var(--red);
+    transition: all 0.2s ease-in-out;
 }
 </style>

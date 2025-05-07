@@ -80,7 +80,7 @@ function stopDragging() {
     width: 300px;
     z-index: 1000;
     overflow: hidden;
-    cursor: default; /* Par défaut, ne pas afficher de curseur "drag" */
+    cursor: default;
 }
 
 .dialog-header {
@@ -90,7 +90,7 @@ function stopDragging() {
     padding: 0.5rem 1rem;
     background-color: #f4f4f4;
     border-bottom: 1px solid #ccc;
-    cursor: move; /* Activer le curseur de déplacement */
+    cursor: move;
 }
 
 .dialog-title {

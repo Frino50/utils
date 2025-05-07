@@ -19,7 +19,8 @@
             undefined-label="undefined"
             true-label="true"
             false-label="false"
-            style="width: 3rem"
+            undefined-color="green"
+            disabled
         />
         <Ball :ball-count="10" />
     </div>
