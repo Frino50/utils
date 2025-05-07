@@ -16,7 +16,9 @@
         <FloatLabelInput v-model="age" label="Âge" number />
         <TriStateCheckbox
             v-model="gender"
-            :label="listGender"
+            undefined-label="undefined"
+            true-label="true"
+            false-label="false"
             style="width: 3rem"
         />
         <Ball :ball-count="10" />
@@ -33,5 +35,4 @@ const username = ref<string>();
 const mail = ref<string>();
 const age = ref<number>();
 const gender = ref<boolean>();
-const listGender = ref<string[]>(["Other", "Male", "Female"]);
 </script>

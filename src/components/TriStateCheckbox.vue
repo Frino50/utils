@@ -1,17 +1,28 @@
 <template>
     <div class="main">
-        <div v-if="props.left">
-            {{ label }}
-        </div>
         <div class="center-checkbox">
-            <div :class="checkboxClass" class="checkbox" @click="toggleState">
+            <div
+                :class="checkboxClass"
+                class="checkbox"
+                @click="toggleState()"
+                role="checkbox"
+                :aria-checked="
+                    model === true
+                        ? 'true'
+                        : model === false
+                          ? 'false'
+                          : 'mixed'
+                "
+                tabindex="0"
+                @keydown.space.prevent="toggleState()"
+            >
                 <span v-if="model === true">✓</span>
                 <span v-if="model === false">X</span>
                 <span v-if="model === undefined"></span>
             </div>
         </div>
 
-        <div v-if="!props.left">
+        <div class="label-container">
             {{ label }}
         </div>
     </div>
@@ -20,25 +31,24 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 
-const model = defineModel();
-
+const model = defineModel<boolean | undefined>();
 const props = defineProps<{
-    label?: string[];
-    left?: boolean;
+    undefinedLabel?: string;
+    trueLabel?: string;
+    falseLabel?: string;
 }>();
 
 const emit = defineEmits<(event: "change") => void>();
 
 const label = computed(() => {
-    if (props.label) {
-        if (model.value === undefined) {
-            return props.label[0];
-        } else if (model.value === true) {
-            return props.label[1];
-        } else {
-            return props.label[2];
-        }
+    if (props.undefinedLabel && model.value === undefined) {
+        return props.undefinedLabel;
+    } else if (props.trueLabel && model.value === true) {
+        return props.trueLabel;
+    } else if (props.falseLabel && model.value === false) {
+        return props.falseLabel;
     }
+    return "";
 });
 
 function toggleState() {
@@ -49,6 +59,7 @@ function toggleState() {
     } else {
         model.value = undefined;
     }
+
     emit("change");
 }
 
@@ -70,16 +81,25 @@ const checkboxClass = computed(() => {
     gap: 0.5rem;
 }
 
+.label-container {
+    min-width: 6.25rem;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .center-checkbox {
     display: flex;
     align-items: center;
+    flex: 0 0 auto;
 }
 
 .checkbox {
     user-select: none;
     cursor: pointer;
-    width: 25px;
-    height: 25px;
+    width: 1.5rem;
+    height: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -90,12 +110,12 @@ const checkboxClass = computed(() => {
 .checkbox-true {
     color: white;
     background-color: var(--blue);
-    border: 1px solid var(--blue);
+    border: 0.1rem solid var(--blue);
 }
 
 .checkbox-false {
     background-color: var(--red);
     color: white;
-    border: 1px solid var(--red);
+    border: 0.1rem solid var(--red);
 }
 </style>
