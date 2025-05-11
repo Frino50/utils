@@ -14,17 +14,17 @@
 
     <div class="gear-icon" @click="openPopUp = !openPopUp">⚙️</div>
 
-    <PopUp v-model="openPopUp">
+    <Dialog v-model="openPopUp">
         <div class="button-container-ball">
             <button @click="addBall">Ajouter une balle</button>
             <button @click="removeBall">Supprimer une balle</button>
         </div>
-    </PopUp>
+    </Dialog>
 </template>
 
 <script lang="ts" setup>
 import { onBeforeUnmount, onMounted, ref } from "vue";
-import PopUp from "./PopUp.vue";
+import Dialog from "./Dialog.vue";
 
 interface Ball {
     id: number;

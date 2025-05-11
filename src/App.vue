@@ -16,12 +16,13 @@
         <FloatLabelInput v-model="age" label="Âge" number />
         <TriStateCheckbox
             v-model="gender"
-            undefined-label="undefined"
-            true-label="true"
             false-label="false"
+            true-label="true"
+            undefined-label="undefined"
         />
         <Ball :ball-count="10" />
     </div>
+    <Dialog v-model="pop" title="test">rterteetr</Dialog>
 </template>
 
 <script lang="ts" setup>
@@ -29,9 +30,11 @@ import { ref } from "vue";
 import FloatLabelInput from "./components/FloatLabelInput.vue";
 import TriStateCheckbox from "./components/TriStateCheckbox.vue";
 import Ball from "./components/Ball.vue";
+import Dialog from "@/components/Dialog.vue";
 
 const username = ref<string>();
 const mail = ref<string>();
 const age = ref<number>();
 const gender = ref<boolean>();
+const pop = ref<boolean>(true);
 </script>
