@@ -1,32 +1,30 @@
 <template>
-    <div style="position: relative">
-        <div :class="['float-label', { error: errorMessage }]">
-            <input
-                :id="label.toLowerCase()"
-                v-model="localValue"
-                :maxlength="maxLength"
-                class="input-field"
-                @blur="handleBlur"
-                @focus="isFocused = true"
-                @input="updateValue"
-            />
+    <div :class="['float-label', { error: errorMessage }]">
+        <input
+            :id="label.toLowerCase()"
+            v-model="localValue"
+            :maxlength="maxLength"
+            class="input-field"
+            @blur="handleBlur"
+            @focus="isFocused = true"
+            @input="updateValue"
+        />
 
-            <label
-                :class="[
-                    'label',
-                    {
-                        'float-active': isFocused || localValue,
-                        error: errorMessage,
-                    },
-                ]"
-                :for="label.toLowerCase()"
-            >
-                {{ label }}
-            </label>
-        </div>
-        <div v-if="errorMessage" class="error-message">
-            {{ errorMessage }}
-        </div>
+        <label
+            :class="[
+                'label',
+                {
+                    'float-active': isFocused || localValue,
+                    error: errorMessage,
+                },
+            ]"
+            :for="label.toLowerCase()"
+        >
+            {{ label }}
+        </label>
+    </div>
+    <div v-if="errorMessage" class="error-message">
+        {{ errorMessage }}
     </div>
 </template>
 
@@ -88,27 +86,54 @@ function handleBlur() {
 </script>
 
 <style scoped>
-input:focus {
-    outline: var(--blue) 0.18rem solid;
-}
-
 .float-label {
     position: relative;
 }
 
-.float-label.error input:focus {
+.input-field {
+    padding: 0.75rem 0.75rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid var(--light-gray);
+    font-size: 1.2rem;
+    box-sizing: border-box;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.input-field:focus {
+    border-color: var(--blue);
+    outline: var(--blue) 0.18rem solid;
+}
+
+.float-label.error .input-field {
+    border-color: var(--red);
+}
+
+.float-label.error .input-field:focus {
+    border-color: var(--red);
     outline: var(--red) 0.18rem solid;
+}
+
+.input-field::placeholder {
+    color: transparent;
 }
 
 .label {
     position: absolute;
-    top: 50%;
     left: 0.75rem;
-    transform: translateY(-50%);
+    top: 0.1rem;
+    transform: translateY(40%);
     transition: all 0.2s linear;
     pointer-events: none;
     color: var(--place-holder-gray);
     font-size: 1rem;
+    z-index: 10;
+    padding: 0 0.25rem;
+    background-color: var(--bg-color);
 }
 
 .label.error {
@@ -125,26 +150,6 @@ input:focus {
     color: var(--red);
 }
 
-.input-field {
-    padding: 0.75rem 0.75rem;
-    width: 100%;
-    border-radius: 0.5rem;
-    border: 1px solid var(--light-gray);
-    font-size: 1.2rem;
-    box-sizing: border-box;
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.input-field:focus {
-    border-color: var(--blue);
-}
-
-.float-label.error .input-field:focus {
-    border-color: var(--red);
-}
-
 .input-field:focus + .label {
     top: -1.1rem;
     font-size: 0.75rem;
@@ -155,22 +160,12 @@ input:focus {
     color: var(--red);
 }
 
-.input-field {
-    border-color: var(--light-gray);
-}
-
-.float-label.error .input-field {
-    border-color: var(--red);
-}
-
-.input-field::placeholder {
-    color: transparent;
-}
-
 .error-message {
     position: absolute;
     color: var(--red);
     font-size: 0.85rem;
     margin-top: 0.25rem;
+    margin-left: 0.25rem;
+    text-align: start;
 }
 </style>

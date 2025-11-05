@@ -58,14 +58,14 @@ const ariaChecked = computed(() =>
 
 const checkboxStyle = computed(() => {
     let bgColor: string;
-    let color = "white";
+    let color = "var(--checkbox-check-color)";
 
     if (model.value === true) {
-        bgColor = props.trueColor ?? "#007ad9";
+        bgColor = props.trueColor ?? "var(--checkbox-true-bg)";
     } else if (model.value === false) {
-        bgColor = props.falseColor ?? "red";
+        bgColor = props.falseColor ?? "var(--checkbox-false-bg)";
     } else {
-        bgColor = props.undefinedColor ?? "transparent";
+        bgColor = props.undefinedColor ?? "var(--checkbox-undefined-bg)";
     }
 
     return {
@@ -90,6 +90,7 @@ const checkboxStyle = computed(() => {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    color: var(--label-color);
 }
 
 .checkbox {
@@ -101,9 +102,16 @@ const checkboxStyle = computed(() => {
     justify-content: center;
     border-radius: 0.5rem;
     transition: all 0.2s ease-in-out;
-    border: 0.1rem solid #e5e7eb;
+    border: 0.1rem solid var(--checkbox-border);
+    color: var(--checkbox-check-color);
 }
+
 .main:hover .checkbox {
-    border-color: #9ca3af;
+    border-color: var(--checkbox-border-hover);
+}
+
+.checkbox[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.6;
 }
 </style>

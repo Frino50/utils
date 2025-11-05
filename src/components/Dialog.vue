@@ -401,8 +401,8 @@ function handleWindowResize() {
 .dialog {
     position: fixed;
     border-radius: 0.5rem;
-    background-color: rgba(40, 40, 40, 0.95);
-    color: white;
+    background-color: var(--dialog-bg);
+    color: var(--dialog-text);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
@@ -422,8 +422,8 @@ function handleWindowResize() {
     justify-content: space-between;
     align-items: center;
     padding: 0.75rem 1rem;
-    background-color: rgba(40, 40, 40, 0.95);
-    border-bottom: 1px solid #555;
+    background-color: var(--dialog-header-bg);
+    border-bottom: 1px solid var(--dialog-header-border);
     cursor: move;
     user-select: none;
     flex-shrink: 0;
@@ -432,7 +432,7 @@ function handleWindowResize() {
 .dialog-title {
     font-size: 1rem;
     font-weight: 600;
-    color: white;
+    color: var(--dialog-text);
     margin: 0;
 }
 
@@ -441,7 +441,7 @@ function handleWindowResize() {
     border: none;
     font-size: 1.5rem;
     font-weight: bold;
-    color: #666;
+    color: var(--close-btn-color);
     cursor: pointer;
     line-height: 1;
     padding: 0;
@@ -457,12 +457,12 @@ function handleWindowResize() {
 }
 
 .close-btn:hover {
-    background-color: #f0f0f0;
-    color: #e74c3c;
+    background-color: var(--close-btn-hover-bg);
+    color: var(--close-btn-hover-color);
 }
 
 .close-btn:focus {
-    outline: 2px solid #b3d8ff;
+    outline: 2px solid var(--close-btn-focus-outline);
     outline-offset: 2px;
 }
 
@@ -470,13 +470,13 @@ function handleWindowResize() {
     padding: 1rem;
     overflow-y: auto;
     flex-grow: 1;
-    color: #555;
+    color: var(--dialog-content-text);
 }
 
 .dialog-footer {
     padding: 0.75rem 1rem;
-    background-color: rgba(40, 40, 40, 0.95);
-    border-bottom: 1px solid #555;
+    background-color: var(--dialog-footer-bg);
+    border-top: 1px solid var(--dialog-footer-border);
     display: flex;
     justify-content: flex-end;
     gap: 0.5rem;
@@ -492,8 +492,8 @@ function handleWindowResize() {
     background: linear-gradient(
         135deg,
         transparent 50%,
-        #ccc 50%,
-        #ccc 60%,
+        var(--resize-handle-color) 50%,
+        var(--resize-handle-color) 60%,
         transparent 60%
     );
     z-index: 10;

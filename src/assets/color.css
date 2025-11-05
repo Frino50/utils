@@ -1,6 +1,61 @@
 :root {
-    --blue: #007ad9;
-    --red: red;
-    --light-gray: lightgray;
-    --place-holder-gray: #aaa
+    --bg-color: #fff;
+    --text-color: #000;
+    --place-holder-gray: #888;
+    --light-gray: #ccc;
+    --blue: #1e90ff;
+    --red: #ff4d4f;
+
+    --checkbox-true-bg: #007ad9;
+    --checkbox-false-bg: #ff4d4f;
+    --checkbox-undefined-bg: transparent;
+    --checkbox-border: #e5e7eb;
+    --checkbox-border-hover: #9ca3af;
+    --checkbox-check-color: white;
+    --label-color: #000;
+
+    --dialog-bg: rgba(255, 255, 255, 0.95);
+    --dialog-text: #000;
+    --dialog-header-bg: rgba(240, 240, 240, 0.95);
+    --dialog-header-border: #ccc;
+    --dialog-footer-bg: rgba(240, 240, 240, 0.95);
+    --dialog-footer-border: #ccc;
+    --dialog-content-text: #333;
+    --close-btn-color: #666;
+    --close-btn-hover-bg: #e0e0e0;
+    --close-btn-hover-color: #e74c3c;
+    --close-btn-focus-outline: #3399ff;
+    --resize-handle-color: #ccc;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #1a1a1a;
+        --text-color: #fff;
+        --place-holder-gray: #aaa;
+        --light-gray: #555;
+        --blue: #3399ff;
+        --red: #ff6b6b;
+
+        --checkbox-true-bg: #3399ff;
+        --checkbox-false-bg: #ff6b6b;
+        --checkbox-undefined-bg: transparent;
+        --checkbox-border: #555;
+        --checkbox-border-hover: #888;
+        --checkbox-check-color: white;
+        --label-color: #fff;
+
+        --dialog-bg: rgba(40, 40, 40, 0.95);
+        --dialog-text: #fff;
+        --dialog-header-bg: rgba(40, 40, 40, 0.95);
+        --dialog-header-border: #555;
+        --dialog-footer-bg: rgba(40, 40, 40, 0.95);
+        --dialog-footer-border: #555;
+        --dialog-content-text: #ddd;
+        --close-btn-color: #aaa;
+        --close-btn-hover-bg: #555;
+        --close-btn-hover-color: #ff6b6b;
+        --close-btn-focus-outline: #3399ff;
+        --resize-handle-color: #888;
+    }
 }
