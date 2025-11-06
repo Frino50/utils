@@ -1,30 +1,32 @@
 <template>
-    <div :class="['float-label', { error: errorMessage }]">
-        <input
-            :id="label.toLowerCase()"
-            v-model="localValue"
-            :maxlength="maxLength"
-            class="input-field"
-            @blur="handleBlur"
-            @focus="isFocused = true"
-            @input="updateValue"
-        />
+    <div>
+        <div :class="['float-label', { error: errorMessage }]">
+            <input
+                :id="label.toLowerCase()"
+                v-model="localValue"
+                :maxlength="maxLength"
+                class="input-field"
+                @blur="handleBlur"
+                @focus="isFocused = true"
+                @input="updateValue"
+            />
 
-        <label
-            :class="[
-                'label',
-                {
-                    'float-active': isFocused || localValue,
-                    error: errorMessage,
-                },
-            ]"
-            :for="label.toLowerCase()"
-        >
-            {{ label }}
-        </label>
-    </div>
-    <div v-if="errorMessage" class="error-message">
-        {{ errorMessage }}
+            <label
+                :class="[
+                    'label',
+                    {
+                        'float-active': isFocused || localValue,
+                        error: errorMessage,
+                    },
+                ]"
+                :for="label.toLowerCase()"
+            >
+                {{ label }}
+            </label>
+        </div>
+        <div v-if="errorMessage" class="error-message">
+            {{ errorMessage }}
+        </div>
     </div>
 </template>
 
